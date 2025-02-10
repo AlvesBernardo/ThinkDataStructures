@@ -128,20 +128,21 @@ public class MyArrayList<T> implements List<T>
 		return array[index];
 	}
 
-//	@Override
-//	public int indexOf(Object target)
-//	{
-//		for (int i = 0; i < this.size; i++)
-//		{
-//				if (equals(target, array[i]))
-//				{
-//					return i;
-//				}
-//			}
-//
-//			return -1;
-//		}
-//	}
+
+	@Override
+	public int indexOf(Object target)
+	{
+		for (int i = 0; i < this.size; i++)
+		{
+			if (equals(target,array[i]))
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
 
 	/** returns the index of the first occurence of the element in the list
 	 . it will return -1 if the list does not contain the element
@@ -155,6 +156,7 @@ public class MyArrayList<T> implements List<T>
 	 * @param target
 	 * @param object
 	 */
+
 	private boolean equals(Object target, Object element)
 	{
 		if (target == null)
@@ -165,6 +167,8 @@ public class MyArrayList<T> implements List<T>
 			return target.equals(element);
 		}
 	}
+
+
 
 	@Override
 	public boolean isEmpty()
@@ -237,7 +241,7 @@ public class MyArrayList<T> implements List<T>
 			array[i] = array[i+1];
 		}
 		size--;
-		return element
+		return element;
 	}
 
 	/**
@@ -265,7 +269,7 @@ public class MyArrayList<T> implements List<T>
 	public T set(int index, T element)
 	{
 		T old = get(index);
-		array[index] = element;
+		this.array[index] = element;
 		return old;
 	}
 
