@@ -15,7 +15,7 @@ public class ProfileListAdd {
 	 */
 	public static void main(String[] args) {
 		profileArrayListAddEnd();
-		//profileArrayListAddBeginning();
+		profileArrayListAddBeginning();
 		//profileLinkedListAddBeginning();
 		//profileLinkedListAddEnd();
 	}
@@ -46,14 +46,35 @@ public class ProfileListAdd {
 	 * Characterize the run time of adding to the beginning of an ArrayList
 	 */
 	public static void profileArrayListAddBeginning() {
-		// TODO: FILL THIS IN!
+		Timeable timeable = new Timeable() {
+			List<String> list;
+			public void setup(int n){list = new ArrayList<String>();}
+			public void timeMe(int n){
+				list.add(0, "a String");
+			}
+		};
+
+		int startN = 4000;
+		int endMilis = 10000;
+		runProfiler("ArrayList add beginning", timeable, startN, endMilis);
+
 	}
 
 	/**
 	 * Characterize the run time of adding to the beginning of a LinkedList
 	 */
 	public static void profileLinkedListAddBeginning() {
-		// TODO: FILL THIS IN!
+		Timeable timeable = new Timeable() {
+			List<String> list;
+			public void setup(int n){list = new LinkedList<>();}
+			public void timeMe(int n){
+				list.add(0, "a String");
+			}
+		};
+
+		int startN = 128000;
+		int endMilis = 2000;
+		runProfiler("LinkedList add beginning", timeable, startN, endMilis);
 	}
 
 	/**
