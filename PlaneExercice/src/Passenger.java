@@ -1,18 +1,16 @@
-public class Passenger
+public class Passenger implements Comparable<Passenger>
 {
 	private String name;
 	private int age;
 	private TypeOfSeat typeOfSeat;
-	private Ticket ticket;
-	private int number;
+	private int numberOfPeople;
 
-	public Passenger(String name, int age, TypeOfSeat typeOfSeat, Ticket ticket, int number)
+	public Passenger(String name, int age, TypeOfSeat typeOfSeat, int numberOfPeople)
 	{
 		setName(name);
 		setAge(age);
 		setTypeOfSeat(typeOfSeat);
-		setTicket(ticket);
-		setNumber(number);
+		setNumberOfPeople(numberOfPeople);
 	}
 
 	public String getName()
@@ -45,23 +43,19 @@ public class Passenger
 		this.typeOfSeat = typeOfSeat;
 	}
 
-	public Ticket getTicket()
+	public int getNumberOfPeople()
 	{
-		return this.ticket;
+		return this.numberOfPeople;
 	}
 
-	public void setTicket(Ticket ticket)
+	public void setNumberOfPeople(int numberOfPeople)
 	{
-		this.ticket = ticket;
+		this.numberOfPeople = numberOfPeople;
 	}
 
-	public int getNumber()
+	@Override
+	public int compareTo(Passenger other)
 	{
-		return this.number;
-	}
-
-	public void setNumber(int number)
-	{
-		this.number = number;
+		return this.name.compareTo(other.name);
 	}
 }

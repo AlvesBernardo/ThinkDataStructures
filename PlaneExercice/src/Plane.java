@@ -1,92 +1,40 @@
-public class Plane<T> implements Comparable<T>
-{
-	private String owner;
-	private int totalSeat;
-	private String Destination;
-	private String from;
-	private int passengers;
-	private int flightNumber;
+import java.util.ArrayList;
+import java.util.List;
 
-	public Plane(String owner, int totalSeat, String destination, String from, int passengers, int flightNumber)
-	{
-		setOwner(owner);
-		setTotalSeat(totalSeat);
-		setDestination(destination);
-		setFrom(from);
-		setPassengers(passengers);
-		setFlightNumber(flightNumber);
-	}
+public class Plane {
+	public static void main(String[] args) {
+		List<Passenger> passengers = new ArrayList<>();
+		passengers.add(new Passenger("Alice", 30, TypeOfSeat.Business, 1));
+		passengers.add(new Passenger("Bob", 25, TypeOfSeat.Economy, 2));
+		passengers.add(new Passenger("Charlie", 35, TypeOfSeat.Premium, 1));
 
-	public String getOwner()
-	{
-		return this.owner;
-	}
+		List<Plane> planes = new ArrayList<>();
+		Plane p1 = new Plane("AirlineA", 150, "Paris", "New York", "AA123");
+		Plane p2 = new Plane("AirlineB", 200, "London", "Tokyo", "BB456");
+		planes.add(p1);
+		planes.add(p2);
 
-	public void setOwner(String owner)
-	{
-		if (owner == null){
-			throw new IllegalArgumentException("Missing owner");
-		}
-		this.owner = owner;
-	}
+		p1.addPassenger(passengers.get(0));
+		p2.addPassenger(passengers.get(1));
 
-	public int getTotalSeat()
-	{
-		return this.totalSeat;
-	}
+		System.out.println("\nPassengers sorted by name (default):");
+		Collections.sort(passengers);
+		passengers.forEach(System.out::println);
 
-	public void setTotalSeat(int totalSeat)
-	{
-		this.totalSeat = totalSeat;
-	}
+		System.out.println("\nPassengers sorted by age & number of people:");
+		passengers.sort(new PassengerComparator());
+		passengers.forEach(System.out::println);
 
-	public String getDestination()
-	{
-		return this.Destination;
-	}
+		System.out.println("\nPlanes sorted by flight number (default):");
+		Collections.sort(planes);
+		planes.forEach(System.out::println);
 
-	public void setDestination(String destination)
-	{
-		Destination = destination;
-	}
+		System.out.println("\nPlanes sorted by total seats & destination:");
+		planes.sort(new PlaneComparator());
+		planes.forEach(System.out::println);
 
-	public String getFrom()
-	{
-		return this.from;
-	}
-
-	public void setFrom(String from)
-	{
-		this.from = from;
-	}
-
-	public int getPassengers()
-	{
-		return this.passengers;
-	}
-
-	public void setPassengers(int passengers)
-	{
-		if (this.passengers > this.totalSeat){
-			throw new IllegalArgumentException("No more sets");
-		}
-		this.passengers = passengers + this.passengers ;
-	}
-
-	public int getFlightNumber()
-	{
-		return this.flightNumber;
-	}
-
-	public void setFlightNumber(int flightNumber)
-	{
-		this.flightNumber = flightNumber;
-	}
-
-
-	@Override
-	public int compareTo(T element)
-	{
-		return 0;
+		Passenger targetPassenger = passengers.get(0);
+		Plane targetPlane = p1;
+		System.out.println("\nChecking if " + targetPassenger.getName() + " is on flight " + targetPlane.getFlightNumber() + ": " + targetPlane.getPassengers().contains(targetPassenger));
 	}
 }
