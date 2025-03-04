@@ -2,6 +2,10 @@ package com.allendowney.thinkdast;
 
 import java.util.*;
 
+import com.allendowney.thinkdast.Profiler.Timeable;
+import org.jfree.data.xy.XYSeries;
+
+
 /**
  * @param <T>
  * @author downey
@@ -125,7 +129,9 @@ public class MyArrayList<T> implements List<T>
 		{
 			throw new IndexOutOfBoundsException();
 		}
+
 		return array[index];
+
 	}
 
 
@@ -301,4 +307,11 @@ public class MyArrayList<T> implements List<T>
 	{
 		throw new UnsupportedOperationException();
 	}
-}
+
+
+	private static void runProfiler(String title, Timeable timeable, int startN, int endMillis){
+		Profiler profiler = new Profiler(title, timeable);
+		XYSeries series = profiler.timingLoop(startN, endMillis);
+		profiler.plotResults(series);
+	}
+	}

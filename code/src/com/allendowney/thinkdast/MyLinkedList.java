@@ -18,11 +18,6 @@ public class MyLinkedList<E> implements List<E>
 	/**
 	 *
 	 */
-	public MyLinkedList()
-	{
-		head = null;
-		size = 0;
-	}
 
 	/**
 	 * @param args
@@ -52,8 +47,8 @@ public class MyLinkedList<E> implements List<E>
 			// loop until the last node
 			for (; node.next != null; node = node.next)
 			{
+				node.next = new Node(element);
 			}
-			node.next = new Node(element);
 		}
 		size++;
 		return true;
@@ -344,9 +339,18 @@ public class MyLinkedList<E> implements List<E>
 			this.next = next;
 		}
 
+		public Node insartAtTail(Node tail, E d){
+			Node temp = new Node(d);
+			tail.next = temp;
+			tail = temp;
+			return temp;
+		}
+
 		public String toString()
 		{
 			return "Node(" + data.toString() + ")";
 		}
 	}
+
 }
+
