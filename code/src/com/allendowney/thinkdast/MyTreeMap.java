@@ -71,7 +71,17 @@ public class MyTreeMap<K, V> implements Map<K, V> {
 		@SuppressWarnings("unchecked")
 		Comparable<? super K> k = (Comparable<? super K>) target;
 
-		// TODO: FILL THIS IN!
+		Node node = null;
+		while (node !=null){
+			int cmp = k.compareTo(node.key);
+			if (cmp < 0)
+				node = node.left;
+			else if (cmp > 0)
+				node = node.right;
+			else
+				return node;
+		}
+
 		return null;
 	}
 
@@ -95,7 +105,19 @@ public class MyTreeMap<K, V> implements Map<K, V> {
 	}
 
 	private boolean containsValueHelper(Node node, Object target) {
-		// TODO: FILL THIS IN!
+		if (node == null){
+			throw new IllegalArgumentException("Missing node");
+		}
+
+		if (equals(target, node.value)){
+			return true;
+		}
+		if (containsValueHelper(node.left, target)) {
+			return true;
+		}
+		if (containsValueHelper(node.right, target)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -121,7 +143,7 @@ public class MyTreeMap<K, V> implements Map<K, V> {
 	@Override
 	public Set<K> keySet() {
 		Set<K> set = new LinkedHashSet<K>();
-		// TODO: FILL THIS IN!
+		add
 		return set;
 	}
 

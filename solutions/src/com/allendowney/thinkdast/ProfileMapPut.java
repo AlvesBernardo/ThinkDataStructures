@@ -14,8 +14,8 @@ public class ProfileMapPut {
 	 */
 	public static void main(String[] args) {
 		//profileHashMapPut();
-		//profileMyHashMapPut();
-		profileMyFixedHashMapPut();
+		profileMyHashMapPut();
+		//profileMyFixedHashMapPut();
 	}
 
 	/**
@@ -23,10 +23,10 @@ public class ProfileMapPut {
 	 */
 	public static void profileHashMapPut() {
 		Timeable timeable = new Timeable() {
-			Map<String, Integer> map;
+			MyHashMap<String, Integer> map;
 
 			public void setup(int n) {
-				map = new HashMap<String, Integer>();
+				map = new MyHashMap<String, Integer>();
 			}
 
 			public void timeMe(int n) {
@@ -45,7 +45,7 @@ public class ProfileMapPut {
 	 */
 	public static void profileMyHashMapPut() {
 		Timeable timeable = new Timeable() {
-			Map<String, Integer> map;
+			MyHashMap<String, Integer> map;
 
 			public void setup(int n) {
 				map = new MyHashMap<String, Integer>();
@@ -68,7 +68,7 @@ public class ProfileMapPut {
 	 */
 	public static void profileMyFixedHashMapPut() {
 		Timeable timeable = new Timeable() {
-			Map<String, Integer> map;
+			MyHashMap<String, Integer> map;
 
 			public void setup(int n) {
 				map = new MyFixedHashMap<String, Integer>();
